@@ -220,7 +220,7 @@ This project is deployed as a **single Railway service**:
 The fastest way to test endpoints directly is via Swagger UI:
 
 ```
-https://your-app.up.railway.app/swagger-ui/index.html
+https://transitops-production-5c4c.up.railway.app/swagger-ui/index.html
 ```
 
 Expand any endpoint → **Try it out** → fill in the request body → **Execute**.
