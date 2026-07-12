@@ -72,32 +72,70 @@ Or register your own account at `/pages/register.html`.
 ##  Project Structure
 
 ```
-backend/
-├── src/main/java/com/transitops/backend/
-│   ├── config/           # SecurityConfig (JWT filter chain, CORS, route permissions)
-│   ├── controller/        # REST controllers (auth, vehicles, drivers, trips, maintenance, fuel, expenses)
-│   ├── dto/auth/           # Request/response DTOs for auth endpoints
-│   ├── entity/             # JPA entities (Vehicle, Driver, Trip, MaintenanceLog, FuelLog, Expense)
-│   ├── enums/               # Status/type enums (VehicleStatus, TripStatus, Role, etc.)
-│   ├── security/jwt/         # JwtService, JwtAuthenticationFilter
-│   └── service/                # Business logic layer
-└── src/main/resources/
-    ├── application.properties
-    └── static/                  # Frontend (served directly by Spring Boot)
-        ├── index.html
-        ├── css/
-        ├── js/
-        └── pages/
-            ├── login.html
-            ├── register.html
-            ├── dashboard.html
-            ├── vehicles.html
-            ├── drivers.html
-            ├── trips.html
-            ├── maintenance.html
-            ├── fuel.html
-            ├── reports.html
-            └── settings.html
+## 📂 Project Structure
+
+```text
+TransitOps/
+│
+├── backend/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/transitops/backend/
+│   │   │   │       ├── config/
+│   │   │   │       ├── controller/
+│   │   │   │       ├── dto/
+│   │   │   │       │   └── auth/
+│   │   │   │       ├── entity/
+│   │   │   │       ├── enums/
+│   │   │   │       ├── exception/
+│   │   │   │       ├── repository/
+│   │   │   │       ├── security/
+│   │   │   │       │   └── jwt/
+│   │   │   │       ├── service/
+│   │   │   │       └── BackendApplication.java
+│   │   │   │
+│   │   │   └── resources/
+│   │   │       └── application.properties
+│   │   │
+│   │   └── test/
+│   │
+│   ├── pom.xml
+│   ├── mvnw
+│   └── mvnw.cmd
+│
+├── frontend/
+│   ├── css/
+│   │   ├── dashboard.css
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │   ├── api.js
+│   │   ├── auth.js
+│   │   ├── dashboard.js
+│   │   ├── drivers.js
+│   │   ├── fuel.js
+│   │   ├── maintenance.js
+│   │   ├── reports.js
+│   │   ├── trips.js
+│   │   └── vehicles.js
+│   │
+│   ├── pages/
+│   │   ├── dashboard.html
+│   │   ├── drivers.html
+│   │   ├── fuel.html
+│   │   ├── login.html
+│   │   ├── maintenance.html
+│   │   ├── reports.html
+│   │   ├── settings.html
+│   │   ├── trips.html
+│   │   └── vehicles.html
+│   │
+│   └── index.html
+│
+├── README.md
+└── .gitignore
+```
 ```
 
 ---
