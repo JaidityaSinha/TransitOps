@@ -23,6 +23,9 @@ public class Vehicle {
     @Column(nullable = false, length = 100)
     private String vehicleName;
 
+    @Column(nullable = false)
+    private String region;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private VehicleType vehicleType;

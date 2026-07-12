@@ -1,5 +1,6 @@
 package com.transitops.backend.entity;
 
+import com.transitops.backend.enums.ExpenseType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,9 +20,13 @@ public class Expense {
     @JoinColumn(name = "trip_id", nullable = false)
     private Trip trip;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Double tollExpense;
+    private ExpenseType expenseType;
 
     @Column(nullable = false)
-    private Double otherExpense;
+    private Double amount;
+
+    @Column(length = 500)
+    private String description;
 }

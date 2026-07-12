@@ -4,6 +4,8 @@ import com.transitops.backend.enums.TripStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -38,6 +40,21 @@ public class Trip {
 
     @Column(nullable = false)
     private Double plannedDistance;
+
+    @Column
+    private Double actualDistance;
+
+    @Column
+    private Double revenue;
+
+    @Column
+    private Double fuelConsumed;
+
+    @Column
+    private LocalDate completionDate;
+
+    @Column(nullable = false)
+    private LocalDate dispatchDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

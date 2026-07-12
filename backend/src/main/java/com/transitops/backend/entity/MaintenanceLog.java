@@ -31,7 +31,12 @@ public class MaintenanceLog {
     @Column(nullable = false)
     private LocalDate serviceDate;
 
+    private LocalDate completionDate;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private MaintenanceStatus status;
+
+    @Column(length = 500)
+    private String remarks;
 }

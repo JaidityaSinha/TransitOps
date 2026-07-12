@@ -33,6 +33,9 @@ public class Driver {
     @Column(nullable = false, length = 15)
     private String contactNumber;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
     @Column(nullable = false)
     private Double safetyScore;
 

@@ -6,7 +6,6 @@ import com.transitops.backend.repository.VehicleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VehicleService {
@@ -28,26 +27,37 @@ public class VehicleService {
     }
 
     public Vehicle saveVehicle(Vehicle vehicle) {
+
+        if (vehicleRepository.existsByRegistrationNumber(vehicle.getRegistrationNumber())) {
+            throw new IllegalArgumentException("Vehicle registration number already exists.");
+        }
+
         return vehicleRepository.save(vehicle);
     }
 
     public Vehicle updateVehicle(Long id, Vehicle updatedVehicle) {
-        return vehicleRepository.findById(id)
-                .map(vehicle -> {
-                    vehicle.setRegistrationNumber(updatedVehicle.getRegistrationNumber());
-                    vehicle.setVehicleName(updatedVehicle.getVehicleName());
-                    vehicle.setVehicleType(updatedVehicle.getVehicleType());
-                    vehicle.setMaxLoadCapacity(updatedVehicle.getMaxLoadCapacity());
-                    vehicle.setOdometer(updatedVehicle.getOdometer());
-                    vehicle.setAcquisitionCost(updatedVehicle.getAcquisitionCost());
-                    vehicle.setStatus(updatedVehicle.getStatus());
 
-                    return vehicleRepository.save(vehicle);
-                })
-                .orElseThrow(() -> new ResourceNotFoundException("Vehicle not found"));
+        Vehicle vehicle = vehicleRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Vehicle not found with id " + id));
+
+        vehicle.setRegistrationNumber(updatedVehicle.getRegistrationNumber());
+        vehicle.setVehicleName(updatedVehicle.getVehicleName());
+        vehicle.setVehicleType(updatedVehicle.getVehicleType());
+        vehicle.setMaxLoadCapacity(updatedVehicle.getMaxLoadCapacity());
+        vehicle.setOdometer(updatedVehicle.getOdometer());
+        vehicle.setAcquisitionCost(updatedVehicle.getAcquisitionCost());
+        vehicle.setStatus(updatedVehicle.getStatus());
+
+        return vehicleRepository.save(vehicle);
     }
 
     public void deleteVehicle(Long id) {
-        vehicleRepository.deleteById(id);
+
+        Vehicle vehicle = vehicleRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Vehicle not found with id " + id));
+
+        vehicleRepository.delete(vehicle);
     }
 }

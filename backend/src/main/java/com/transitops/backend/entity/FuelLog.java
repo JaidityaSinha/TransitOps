@@ -29,4 +29,7 @@ public class FuelLog {
 
     @Column(nullable = false)
     private LocalDate fuelDate;
+
+    @Column(nullable = false)
+    private Double odometerReading;
 }

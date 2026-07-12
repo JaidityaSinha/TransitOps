@@ -36,38 +36,37 @@ public class DashboardService {
 
         Map<String, Object> dashboard = new HashMap<>();
 
-        dashboard.put("totalVehicles", vehicleRepository.count());
+        long totalVehicles = vehicleRepository.count();
+        long availableVehicles = vehicleRepository.countByStatus(VehicleStatus.AVAILABLE);
+        long inShopVehicles = vehicleRepository.countByStatus(VehicleStatus.IN_SHOP);
 
-        dashboard.put(
-                "availableVehicles",
-                vehicleRepository.findAll()
-                        .stream()
-                        .filter(v -> v.getStatus() == VehicleStatus.AVAILABLE)
-                        .count()
-        );
+        long totalDrivers = driverRepository.count();
+        long availableDrivers = driverRepository.countByStatus(DriverStatus.AVAILABLE);
+        long driversOnDuty = driverRepository.countByStatus(DriverStatus.ON_TRIP);
 
-        dashboard.put("totalDrivers", driverRepository.count());
+        long activeTrips = tripRepository.countByStatus(TripStatus.DISPATCHED);
+        long completedTrips = tripRepository.countByStatus(TripStatus.COMPLETED);
+        long pendingTrips = tripRepository.countByStatus(TripStatus.DRAFT);
 
-        dashboard.put(
-                "availableDrivers",
-                driverRepository.findAll()
-                        .stream()
-                        .filter(d -> d.getStatus() == DriverStatus.AVAILABLE)
-                        .count()
-        );
+        dashboard.put("totalVehicles", totalVehicles);
+        dashboard.put("availableVehicles", availableVehicles);
+        dashboard.put("vehiclesInMaintenance", inShopVehicles);
 
-        dashboard.put(
-                "activeTrips",
-                tripRepository.findAll()
-                        .stream()
-                        .filter(t -> t.getStatus() == TripStatus.DISPATCHED)
-                        .count()
-        );
+        dashboard.put("totalDrivers", totalDrivers);
+        dashboard.put("availableDrivers", availableDrivers);
+        dashboard.put("driversOnDuty", driversOnDuty);
 
-        dashboard.put(
-                "maintenanceLogs",
-                maintenanceRepository.count()
-        );
+        dashboard.put("activeTrips", activeTrips);
+        dashboard.put("completedTrips", completedTrips);
+        dashboard.put("pendingTrips", pendingTrips);
+
+        dashboard.put("maintenanceLogs", maintenanceRepository.count());
+
+        double fleetUtilization = totalVehicles == 0
+                ? 0
+                : (driversOnDuty * 100.0) / totalVehicles;
+
+        dashboard.put("fleetUtilization", fleetUtilization);
 
         return dashboard;
     }
