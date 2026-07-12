@@ -1,3 +1,20 @@
+![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-green?style=for-the-badge&logo=springboot)
+![Spring Security](https://img.shields.io/badge/Spring_Security-JWT-success?style=for-the-badge&logo=springsecurity)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge&logo=postgresql)
+![Hibernate](https://img.shields.io/badge/Hibernate-JPA-brown?style=for-the-badge&logo=hibernate)
+![Maven](https://img.shields.io/badge/Maven-Build-red?style=for-the-badge&logo=apachemaven)
+![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-85EA2D?style=for-the-badge&logo=swagger)
+![JWT](https://img.shields.io/badge/JWT-Authentication-black?style=for-the-badge&logo=jsonwebtokens)
+![Railway](https://img.shields.io/badge/Deployed_on-Railway-7B42F6?style=for-the-badge&logo=railway)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/f7c59d97-e5c3-492d-8411-512563218460" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/342f92b2-0a0a-48d4-ab84-0739e7d7170d" />
+
+
+
+
 # TransitOps
 
 **Smart Transport Operations Platform** — a full-stack fleet management system for tracking vehicles, drivers, trips, maintenance, fuel, and operational costs in real time.
@@ -96,7 +113,7 @@ Static pages (`/`, `/index.html`, `/css/**`, `/js/**`, `/pages/**`) and `/api/au
 
 ---
 
-## 📡 API Overview
+##  API Overview
 
 | Endpoint | Methods | Roles |
 |---|---|---|
@@ -196,7 +213,7 @@ Example register payload:
 ##  Team
 
 JaidityaSinha
-madhavcodes35
+madhavcodes25
 
 ##  License
 
