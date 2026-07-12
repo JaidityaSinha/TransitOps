@@ -6,7 +6,6 @@ import com.transitops.backend.repository.ExpenseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ExpenseService {
@@ -32,18 +31,27 @@ public class ExpenseService {
     }
 
     public Expense updateExpense(Long id, Expense updatedExpense) {
-        return repository.findById(id)
-                .map(expense -> {
-                    expense.setTrip(updatedExpense.getTrip());
-                    expense.setTollExpense(updatedExpense.getTollExpense());
-                    expense.setOtherExpense(updatedExpense.getOtherExpense());
 
-                    return repository.save(expense);
-                })
-                .orElseThrow(() -> new RuntimeException("Expense not found"));
+        Expense expense = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Expense not found with id " + id));
+
+        expense.setTrip(updatedExpense.getTrip());
+
+        // NEW DESIGN
+        expense.setExpenseType(updatedExpense.getExpenseType());
+        expense.setAmount(updatedExpense.getAmount());
+        expense.setDescription(updatedExpense.getDescription());
+
+        return repository.save(expense);
     }
 
     public void deleteExpense(Long id) {
-        repository.deleteById(id);
+
+        Expense expense = repository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Expense not found with id " + id));
+
+        repository.delete(expense);
     }
 }
